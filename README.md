@@ -1,4 +1,4 @@
-# Shaarli Descriptor Plugin
+# Shaarli Custom CSS Plugin
 
 [Shaarli](https://github.com/shaarli/Shaarli) plugin to customize the look and feel of the UI with custom CSS rules. 
 
