@@ -60,7 +60,9 @@ Supported values: any string (without validation!), defaults to empty.
 
 - :warning: There is no validation on the CSS file contents upon saving and loading! Your only "protection" against a self-[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) attack is the `rel="stylesheet"` attribute on the link. It should be enough but please consider your attack vector.
 
-## Recommendation 
+## Recommendations
+
+An example CSS you can try out for starting customizations over the default theme: `.linklist-item, .linklist-item-title, .linklist-item-infos, .page-form, .page-form .window-title, .linksperpage a, .linklist-filters .filter-off, .linksperpage input[type="text"], .searchform-block input[type="text"] { background: #fff }  .linklist-item-infos-url { display: none } .linklist-item-infos-dateblock { width: 100% } .linklist-item-title h2 { line-height: 1em; padding: 0.3em 10px 0.3em } .linklist-item-infos .label-tag { background: #f4f4f4; } .label-tag a { color: #595959 } .linklist-item-infos .linklist-item-tags { font-size: .8em; padding: 0.2em 0 0.7em; }`
 
 Shaarli Custom CSS works best with my [Shaarli Markdown Toolbar](https://github.com/immanuelfodor/shaarli-markdown-toolbar) plugin, check it out, too! 😉
 
