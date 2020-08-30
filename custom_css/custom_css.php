@@ -27,11 +27,11 @@ use Shaarli\Config\ConfigManager;
  *
  * @return array altered $data
  */
-function hook_shaarli_custom_css_render_header($data, $conf)
+function hook_custom_css_render_header($data, $conf)
 {
     $customCss = $conf->get('plugins.CUSTOM_CSS');
 
-    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/shaarli_custom_css/shaarli_custom_css.html');
+    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/custom_css/custom_css.html');
     $html = sprintf($html, $customCss);
     $data['buttons_toolbar'][] = $html;
 
@@ -41,7 +41,7 @@ function hook_shaarli_custom_css_render_header($data, $conf)
 /**
  * This function is never called, but contains translation calls for GNU gettext extraction.
  */
-function shaarli_descriptor_dummy_translation()
+function custom_css_dummy_translation()
 {
     // meta
     t('Customizer plugin to add your own CSS rules to the header of every page.');

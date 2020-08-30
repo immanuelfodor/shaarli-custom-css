@@ -10,27 +10,27 @@ Tested on Shaarli 0.12.0-beta with the default theme but it should work with the
 
 ## Installation
 
-The plugin's folder (`shaarli_custom_css`) should be placed in the `<shaarli>/plugins/` directory.
+The plugin's folder (`custom_css`) should be placed in the `<shaarli>/plugins/` directory.
 
 The directory structure should look like:
 
 ```bash 
 └── plugins
-    └── shaarli_custom_css
-        ├── shaarli_custom_css.html
-        ├── shaarli_custom_css.meta
-        └── shaarli_custom_css.php
+    └── custom_css
+        ├── custom_css.html
+        ├── custom_css.meta
+        └── custom_css.php
 ```
 
 To enable the plugin, just check it in the Plugin Administration page (`?do=pluginadmin`).
 
-You can also add `shaarli_custom_css` to your list of enabled plugins in `data/config.json.php`.\
+You can also add `custom_css` to your list of enabled plugins in `data/config.json.php`.\
 The `general.enabled_plugins` list should look like then:
 
 ```
 "general": {
   "enabled_plugins": [
-    "shaarli_custom_css",
+    "custom_css",
     [...]
   ],
 }
