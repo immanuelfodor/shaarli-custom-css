@@ -23,13 +23,14 @@ use Shaarli\Config\ConfigManager;
  * 
  * @see https://shaarli.readthedocs.io/en/master/Plugin-System/#render_includes
  *
- * @param array $data data passed to plugin
+ * @param array $data - data passed to plugin
+ * @param ConfigManager $conf - configmanager instance
  *
- * @return array altered $data.
+ * @return array altered $data
  */
-function hook_custom_css_render_includes($data)
+function hook_custom_css_render_includes($data, $conf)
 {
-    $customCss = PluginManager::$PLUGINS_PATH . '../data/custom_css.css';
+    $customCss = $conf->get('resource.data_dir') . '/custom_css.css';
 
     if (file_exists($customCss)) {
         $data['css_files'][] = $customCss;
@@ -43,11 +44,12 @@ function hook_custom_css_render_includes($data)
  * 
  * @see https://shaarli.readthedocs.io/en/master/Plugin-System/#save_plugin_parameters
  *
- * @param array $data $_POST array
+ * @param array $data - $_POST array
+ * @param ConfigManager $conf - configmanager instance
  *
  * @return array Updated $_POST array
  */
-function hook_custom_css_save_plugin_parameters($data)
+function hook_custom_css_save_plugin_parameters($data, $conf)
 {
     $customCss = '';
 
@@ -55,10 +57,11 @@ function hook_custom_css_save_plugin_parameters($data)
         $customCss = $data['CUSTOM_CSS'];
     }
 
-    file_put_contents(PluginManager::$PLUGINS_PATH . '../data/custom_css.css', $customCss);
+    file_put_contents($conf->get('resource.data_dir') . '/custom_css.css', $customCss);
 
     return $data;
 }
+
 
 /**
  * This function is never called, but contains translation calls for GNU gettext extraction.
