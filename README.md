@@ -24,14 +24,14 @@ The directory structure should look like:
 
 To enable the plugin, just check it in the Plugin Administration page (`?do=pluginadmin`).
 
-You can also add `custom_css` to your list of enabled plugins in `data/config.json.php`.\
+You can also add `custom_css` to your list of enabled plugins in `data/config.json.php`.  
 The `general.enabled_plugins` list should look like then:
 
 ```
 "general": {
   "enabled_plugins": [
-    "custom_css",
-    [...]
+    ...other_plugins_above,
+    "custom_css"
   ],
 }
 ```
@@ -61,6 +61,8 @@ Supported values: any string (without validation!), defaults to empty.
 - :warning: There is no validation on the CSS file contents upon saving and loading! Your only "protection" against a self-[XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) attack is the `rel="stylesheet"` attribute on the link. It should be enough but please consider your attack vector.
 
 ## Recommendations
+
+Put this plugin to the bottom of the enabled plugins list either in the config JSON file or via the administration UI. This lets you redefine other plugins CSS rules as well.
 
 An example CSS you can try out for starting customizations over the default theme: `.linklist-item, .linklist-item-title, .linklist-item-infos, .page-form, .page-form .window-title, .linksperpage a, .linklist-filters .filter-off, .linksperpage input[type="text"], .searchform-block input[type="text"] { background: #fff }  .linklist-item-infos-url { display: none } .linklist-item-infos-dateblock { width: 100% } .linklist-item-title h2 { line-height: 1em; padding: 0.3em 10px 0.3em } .linklist-item-infos .label-tag { background: #f4f4f4; } .label-tag a { color: #595959 } .linklist-item-infos .linklist-item-tags { font-size: .8em; padding: 0.2em 0 0.7em; }`
 
