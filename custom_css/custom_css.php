@@ -11,29 +11,51 @@ use Shaarli\Plugin\PluginManager;
 use Shaarli\Config\ConfigManager;
 
 /**
- * Injecting our CSS code to all page headers.
- * 
- * Hook render_header.
+ * Hook render_includes.
  * Executed on every page render.
  *
  * Template placeholders:
- *   - buttons_toolbar
- *   - fields_toolbar
+ *   - css_files
+ *
+ * Data:
+ *   - _PAGE_: current page
+ *   - _LOGGEDIN_: true/false
  * 
- * @see https://shaarli.readthedocs.io/en/master/Plugin-System/#render_header
+ * @see https://shaarli.readthedocs.io/en/master/Plugin-System/#render_includes
  *
- * @param array $data - data passed to plugin
- * @param ConfigManager $conf - configmanager instance
+ * @param array $data data passed to plugin
  *
- * @return array altered $data
+ * @return array altered $data.
  */
-function hook_custom_css_render_header($data, $conf)
+function hook_custom_css_render_includes($data)
 {
-    $customCss = $conf->get('plugins.CUSTOM_CSS');
+    $customCss = PluginManager::$PLUGINS_PATH . '../data/custom_css.css';
 
-    $html = file_get_contents(PluginManager::$PLUGINS_PATH . '/custom_css/custom_css.html');
-    $html = sprintf($html, $customCss);
-    $data['buttons_toolbar'][] = $html;
+    if (file_exists($customCss)) {
+        $data['css_files'][] = $customCss;
+    }
+
+    return $data;
+}
+
+/**
+ * When plugin parameters are saved.
+ * 
+ * @see https://shaarli.readthedocs.io/en/master/Plugin-System/#save_plugin_parameters
+ *
+ * @param array $data $_POST array
+ *
+ * @return array Updated $_POST array
+ */
+function hook_custom_css_save_plugin_parameters($data)
+{
+    $customCss = '';
+
+    if (!empty($data['CUSTOM_CSS'])) {
+        $customCss = $data['CUSTOM_CSS'];
+    }
+
+    file_put_contents(PluginManager::$PLUGINS_PATH . '../data/custom_css.css', $customCss);
 
     return $data;
 }
