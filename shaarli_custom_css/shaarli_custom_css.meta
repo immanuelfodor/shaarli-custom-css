@@ -1,0 +1,3 @@
+description="Customizer plugin to add your own CSS rules to the header of every page."
+parameters="CUSTOM_CSS"
+parameter.CUSTOM_CSS="Your CSS as one huge line. Default empty"
